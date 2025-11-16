@@ -1,16 +1,26 @@
 ---
-
+import Default from "../layouts/default.astro";
+import Logo from "../images/logo.svg";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Default>
+    <div
+        class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 items-center p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50"
+    >
+        <h1
+            class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold w-full max-md:text-center"
+        >
+            <span class="opacity-75 max-md:hidden">&rarr;</span> FinWiki
+        </h1>
+        <div class="w-full flex justify-start">
+            <h2
+                class="text-xl sm:text-3xl md:text-4xl lg:text-5xl italic text-brand-blue max-md:w-full max-md:text-center md:w-128 lg:w-160 xl:w-192"
+            >
+                The only financial resource you need to learn analysis
+            </h2>
+        </div>
+        <Logo
+            class="absolute top-0 right-0 w-100 lg:w-136 xl:w-172 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% rotate-z-6 shadow-xl"
+        />
+    </div>
+</Default>

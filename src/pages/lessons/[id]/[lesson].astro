@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+    const chapters = await getCollection("chapters");
+    const lessons = await getCollection("lessons");
+
+    const routes = [];
+
+    chapters.map((chapter) => {
+        lessons.map((lesson) => {
+            if (lesson.data.chapterId !== chapter.data.id) return;
+
+            routes.push({
+                params: { id: chapter.id, lesson: lesson.id },
+                props: { lesson },
+            });
+        });
+    });
+
+    return routes;
+}
+
+import Lesson from "@layouts/lesson.astro";
+
+const { lesson } = Astro.props;
+const { Content } = await render(lesson);
+---
+
+<Lesson
+    title={lesson.data.name}
+    chapterId={lesson.data.chapterId}
+    number={lesson.data.id}
+>
+    <Content />
+</Lesson>

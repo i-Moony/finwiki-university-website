@@ -1,0 +1,154 @@
+---
+import Logo from "../images/logo.svg";
+
+const { pathname } = Astro.url;
+---
+
+<header
+    class="w-full flex justify-center py-4 mt-4 mb-6 text-brand-blue bg-brand-grey z-100"
+    id="header"
+>
+    <div class="max-w-400 w-full flex justify-between items-center px-2">
+        <a class="flex flex-row items-center gap-1" href="/">
+            <Logo class="w-16 sm:w-24 h-auto" />
+            <h1 class="text-4xl sm:text-5xl font-extrabold font-sans">
+                FinWiki
+            </h1>
+        </a>
+        <nav
+            class="flex flex-row gap-8 items-center text-3xl font-sans"
+            id="header-right"
+        >
+            <a
+                href="/lessons/introduction"
+                class={pathname.startsWith("/lessons") ? "active" : ""}
+                >Lessons</a
+            >
+            <a
+                href="/about"
+                class={pathname.startsWith("/about") ? "active" : ""}>About</a
+            >
+        </nav>
+        <input
+            type="checkbox"
+            id="header-hamburger-checkbox"
+            autocomplete="off"
+            class="hidden"
+        />
+        <label id="header-hamburger" for="header-hamburger-checkbox">
+            <span></span>
+        </label>
+        <nav
+            id="header-fullscreen"
+            class="bg-brand-grey text-brand-blue invisible font-sans opacity-0 fixed top-0 left-0 w-full h-full flex justify-center items-center z-250 transition-all md:hidden select-none"
+        >
+            <div class="flex flex-col justify-center items-center">
+                <a href="/" class:list={[{ active: pathname.length <= 1 }]}
+                    >Home</a
+                >
+                <a
+                    href="/lessons/introduction"
+                    class:list={[{ active: pathname.startsWith("/lessons") }]}
+                    >Lessons</a
+                >
+                <a
+                    href="/about"
+                    class:list={[{ active: pathname.startsWith("/about") }]}
+                    >About</a
+                >
+            </div>
+        </nav>
+    </div>
+</header>
+
+<style>
+    #header {
+        top: 0;
+        position: sticky;
+    }
+
+    #header-right a.active {
+        text-decoration: underline 3px;
+        text-underline-offset: 4px;
+        font-weight: var(--font-weight-extrabold);
+    }
+
+    #header-hamburger {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        cursor: pointer;
+        width: max-content;
+        z-index: 300;
+    }
+
+    #header-fullscreen div a {
+        font-size: 2.5rem;
+    }
+
+    #header-fullscreen div a.active {
+        color: var(--color-brand-blue);
+        text-decoration-color: inherit;
+        text-decoration: 3px underline;
+        text-underline-offset: 4px;
+        font-weight: var(--font-weight-extrabold);
+    }
+
+    #header-hamburger::before,
+    #header-hamburger::after,
+    #header-hamburger span {
+        content: " ";
+        width: 2rem;
+        height: 0.2rem;
+        background-color: var(--color-brand-blue);
+        transform-origin: left center;
+        transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+        z-index: 20;
+    }
+
+    #header-hamburger-checkbox:checked ~ #header-hamburger::before {
+        width: 1.72rem;
+        rotate: 45deg;
+        translate: 0.1rem 0.1rem;
+    }
+
+    #header-hamburger-checkbox:checked ~ #header-hamburger::after {
+        width: 1.72rem;
+        rotate: -45deg;
+        translate: 0.1rem -0.1rem;
+    }
+
+    #header-hamburger-checkbox:checked ~ #header-hamburger span {
+        opacity: 0;
+        width: 0;
+    }
+
+    #header-hamburger-checkbox:checked ~ #header-fullscreen {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    #header-right a {
+        display: none;
+    }
+
+    @media (width >= 48rem) {
+        #header {
+            position: unset;
+        }
+
+        #header-hamburger {
+            display: none;
+        }
+
+        #header-right a {
+            display: unset;
+        }
+    }
+
+    @media (width < 48rem) {
+        body:has(#header-hamburger-checkbox:checked) {
+            overflow: hidden;
+        }
+    }
+</style>

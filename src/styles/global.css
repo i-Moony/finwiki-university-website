@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+/* Tailwind Theme */
+@theme {
+    --font-georgia: "Georgia";
+
+    --default-transition-duration: 0.3s;
+    --default-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+    --breakpoint-sss: 18rem;
+    --breakpoint-xss: 24rem;
+    --breakpoint-xs: 30rem;
+
+    --color-brand-white: #fafafa;
+    --color-brand-grey: #ebeeff;
+    /*--color-brand-grey: #eff0f3;*/
+    --color-brand-blue: #144ea9;
+    --color-brand-black: #1c2533;
+
+    --shadow-below-header: 0px 0rem 0.5rem rgba(0, 0, 0, 0.125);
+}

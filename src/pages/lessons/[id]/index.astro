@@ -1,0 +1,91 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+    const chapters = await getCollection("chapters");
+
+    return chapters.map((chapter) => ({
+        params: { id: chapter.id },
+        props: { chapter },
+    }));
+}
+
+import Chapter from "../../../layouts/chapter.astro";
+
+const { chapter } = Astro.props;
+const { Content } = await render(chapter);
+
+const lessons = await getCollection("lessons");
+const chapterLessons = lessons.filter(
+    (lesson) => lesson.data.chapterId === chapter.data.id,
+);
+---
+
+<Chapter title={chapter.data.name} number={chapter.data.id}>
+    <div id="chapter-brief" class="w-full flex flex-col gap-2">
+        <Content />
+        <h2>Lessons</h2>
+        <ol type="1" id="chapter-lessons">
+            {
+                chapterLessons.map((lesson) => (
+                    <li>
+                        <a
+                            href={"/lessons/" + chapter.id + "/" + lesson.id}
+                            class="text-brand-blue underline decoration-1 underline-offset-4"
+                        >
+                            {lesson.data.name}
+                        </a>
+                        <p>{lesson.data.description}</p>
+                    </li>
+                ))
+            }
+        </ol>
+    </div>
+</Chapter>
+
+<style is:global>
+    #chapter-brief h2 {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-weight-bold);
+        color: color-mix(
+            in oklab,
+            var(--color-brand-blue) 90%,
+            var(--color-brand-black)
+        );
+    }
+
+    #chapter-brief h2::before {
+        content: "> ";
+    }
+
+    #chapter-brief p {
+        font-size: var(--text-xl);
+        text-align: justify;
+    }
+
+    #chapter-brief ol {
+        list-style-type: decimal;
+        list-style-position: outside;
+        font-size: var(--text-xl);
+        text-align: justify;
+        margin-left: 1em;
+    }
+
+    #chapter-lessons li::marker {
+        color: var(--color-brand-blue);
+    }
+
+    #chapter-lessons li p {
+        font-size: var(--text-lg);
+    }
+
+    @media (width >= 80rem) {
+        #chapter-brief h2 {
+            font-size: var(--text-4xl);
+        }
+
+        #chapter-brief p {
+            font-size: var(--text-xl);
+        }
+    }
+</style>

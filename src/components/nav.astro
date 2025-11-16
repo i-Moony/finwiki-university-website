@@ -1,0 +1,166 @@
+---
+import { getCollection } from "astro:content";
+
+const chapters = await getCollection("chapters");
+const lessons = await getCollection("lessons");
+
+const { pathname } = Astro.url;
+const paths = pathname.split("/");
+
+const highlightChapter = paths.length === 3;
+---
+
+<nav
+    class="bg-white border border-brand-grey/80 flex flex-col w-full lg:w-112 rounded-2xl lg:shadow-md text-lg p-2 max-lg:py-4"
+    id="lesson-nav"
+>
+    <label for="nav-hamburger-checkbox" id="nav-title">
+        <h2
+            class="pb-1 text-2xl lg:text-3xl xl:text-4xl text-brand-blue/85 font-extrabold font-sans flex w-full flex-row justify-center gap-2 items-center"
+        >
+            <input
+                type="checkbox"
+                id="nav-hamburger-checkbox"
+                autocomplete="off"
+                class="hidden"
+            />
+            <label id="nav-hamburger" for="nav-hamburger-checkbox">
+                <span></span>
+            </label>
+            Navigation
+        </h2>
+    </label>
+    <div id="nav-links">
+        <hr class="border-t border-brand-black/15 lg:border-dotted mx-4 my-4" />
+        <ol class="mx-4 sm:text-justify">
+            {
+                chapters.map((chapter) => (
+                    <li>
+                        <a
+                            href={"/lessons/" + chapter.id}
+                            class:list={[
+                                "font-semibold underline underline-offset-4 decoration-1",
+                                {
+                                    active:
+                                        highlightChapter &&
+                                        paths[2] === chapter.id,
+                                },
+                            ]}
+                        >
+                            Chapter {chapter.data.id}: {chapter.data.name}
+                        </a>
+                        <ol class="list-decimal ml-10">
+                            {lessons.map((lesson) => (
+                                <li>
+                                    <a
+                                        href={
+                                            "/lessons/" +
+                                            chapter.id +
+                                            "/" +
+                                            lesson.id
+                                        }
+                                        class:list={[
+                                            "underline underline-offset-4 decoration-1",
+                                            {
+                                                active:
+                                                    !highlightChapter &&
+                                                    paths[3] === lesson.id,
+                                            },
+                                        ]}
+                                    >
+                                        {lesson.data.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ol>
+                    </li>
+                ))
+            }
+        </ol>
+    </div>
+</nav>
+
+<style>
+    .active {
+        color: var(--color-brand-blue);
+    }
+
+    .active::after {
+        content: "<--";
+        font-weight: var(--font-weight-extrabold);
+    }
+
+    #nav-title {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    #nav-hamburger {
+        margin-top: 0.2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        cursor: pointer;
+        width: max-content;
+    }
+
+    #nav-hamburger::before,
+    #nav-hamburger::after,
+    #nav-hamburger span {
+        content: " ";
+        width: 1.75rem;
+        height: 0.2rem;
+        background-color: color-mix(
+            in oklab,
+            var(--color-brand-blue) /* #144ea9 */ 85%,
+            transparent
+        );
+        transform-origin: left center;
+        transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s;
+    }
+
+    #nav-hamburger-checkbox:checked ~ #nav-hamburger::before {
+        width: 1.18rem;
+        rotate: 45deg;
+        translate: 0.05rem 0.05rem;
+    }
+
+    #nav-hamburger-checkbox:checked ~ #nav-hamburger::after {
+        width: 1.18rem;
+        rotate: -45deg;
+        translate: 0.05rem -0.05rem;
+    }
+
+    #nav-hamburger-checkbox:checked ~ #nav-hamburger span {
+        opacity: 0;
+        width: 0;
+    }
+
+    #nav-links {
+        height: 0;
+        overflow: hidden;
+    }
+
+    #nav-title:has(#nav-hamburger-checkbox:checked) ~ #nav-links {
+        height: fit-content;
+    }
+
+    @media (width >= 64rem) {
+        #nav-title {
+            cursor: unset;
+            pointer-events: none;
+        }
+
+        #nav-links {
+            height: fit-content;
+            opacity: 1;
+        }
+
+        #nav-hamburger-checkbox,
+        #nav-hamburger::before,
+        #nav-hamburger::after,
+        #nav-hamburger span {
+            display: none;
+        }
+    }
+</style>
