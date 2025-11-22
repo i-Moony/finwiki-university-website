@@ -1,6 +1,6 @@
 ---
-import Default from "./default.astro";
-import Nav from "../components/nav.astro";
+import Default from "@layouts/default.astro";
+import Nav from "@components/nav.astro";
 
 const { title, number, chapterId } = Astro.props;
 ---
@@ -11,7 +11,7 @@ const { title, number, chapterId } = Astro.props;
     >
         <Nav />
         <article
-            class="bg-white border-brand-grey/80 w-full flex flex-col gap-4 items-center rounded-2xl p-2 lg:p-4 xl:p-8 lg:shadow-md"
+            class="bg-white border border-brand-grey/80 w-full flex flex-col gap-4 items-center rounded-2xl p-2 lg:p-4 xl:p-8 shadow-sm lg:shadow-md"
         >
             <h1
                 class="text-3xl md:text-4xl lg:text-5xl font-sans font-bold text-center text-brand-blue/85"

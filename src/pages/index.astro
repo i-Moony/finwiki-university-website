@@ -1,26 +1,118 @@
 ---
-import Default from "../layouts/default.astro";
-import Logo from "../images/logo.svg";
+import { getCollection } from "astro:content";
+
+import Default from "@layouts/default.astro";
+import Logo from "@images/logo.svg";
+
+const chapters = await getCollection("chapters");
+const lessons = await getCollection("lessons");
 ---
 
 <Default>
-    <div
-        class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 items-center p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50"
-    >
-        <h1
-            class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold w-full max-md:text-center"
+    <div class="flex flex-col gap-6 lg:gap-8 w-full my-4 md:my-8">
+        <div
+            class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 items-center p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50"
         >
-            <span class="opacity-75 max-md:hidden">&rarr;</span> FinWiki
-        </h1>
-        <div class="w-full flex justify-start">
-            <h2
-                class="text-xl sm:text-3xl md:text-4xl lg:text-5xl italic text-brand-blue max-md:w-full max-md:text-center md:w-128 lg:w-160 xl:w-192"
+            <h1
+                class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold w-full max-md:text-center"
             >
-                The only financial resource you need to learn analysis
-            </h2>
+                <span class="opacity-75 max-md:hidden">&rarr;</span> FinWiki
+            </h1>
+            <div class="w-full flex justify-start">
+                <h2
+                    class="text-xl sm:text-3xl md:text-4xl lg:text-5xl italic text-brand-blue max-md:w-full max-md:text-center md:w-128 lg:w-160 xl:w-192"
+                >
+                    The only financial resource you need to learn analysis
+                </h2>
+            </div>
+            <Logo
+                class="absolute top-0 right-0 w-100 lg:w-136 xl:w-172 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% rotate-z-6 shadow-xl"
+            />
         </div>
-        <Logo
-            class="absolute top-0 right-0 w-100 lg:w-136 xl:w-172 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% rotate-z-6 shadow-xl"
-        />
+        <div
+            class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 items-end p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50 z-10"
+        >
+            <h1
+                class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold text-right max-md:w-full max-md:text-center z-20"
+            >
+                FinWiki <span class="opacity-75 max-md:hidden">&larr;</span>
+            </h1>
+            <div class="max-md:w-full flex justify-start z-20">
+                <h2
+                    class="text-xl sm:text-3xl md:text-4xl lg:text-5xl italic text-brand-blue text-right max-md:w-full max-md:text-center md:w-128 lg:w-160 xl:w-192"
+                >
+                    Lessons that help you build your knowledge base
+                </h2>
+            </div>
+            <Logo
+                class="absolute -mt-12 top-0 left-0 w-120 lg:w-156 xl:w-192 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% -rotate-z-10 shadow-xl z-10"
+            />
+        </div>
+        <div
+            class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 lg:gap-8 xl:gap-10 items-center p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50 z-10"
+        >
+            <h1
+                class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold text-center z-20"
+            >
+                From people who study it thoroughly
+            </h1>
+            <ol class="mx-4 text-center text-xl sm:text-2xl flex flex-col gap-4 z-20">
+                <li><strong>Asyaev Daniil</strong>, 3rd year (Financial University, Financial Markets and Fintech)</li>
+                <li><strong>Kareeva Elizaveta</strong>, 3rd year (Financial University, Financial Markets and Fintech)</li>
+                <li><strong>Kononov Danila</strong>, 3rd year (Financial University, Financial Markets and Fintech)</li>
+            </ol>
+            <Logo
+                class="absolute -mb-12 xl:-mb-24 bottom-0 left-0 w-40 lg:w-60 xl:w-72 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% -rotate-z-10 shadow-xl z-10"
+            />
+            <Logo
+                class="absolute -mt-12 xl:-mt-24 -mr-12 top-0 right-0 w-40 lg:w-60 xl:w-72 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-40% -rotate-z-170 shadow-xl z-10"
+            />
+        </div>
+        <div
+            class="w-full bg-gradient-to-br from-brand-grey/80 to-brand-blue/30 rounded-4xl shadow-lg flex flex-col gap-2 sm:gap-4 items-center p-4 md:p-6 lg:p-8 xl:p-12 md:min-h-70 lg:min-h-90 xl:min-h-105 relative overflow-hidden border border-brand-blue/50 z-10"
+        >
+            <h1
+                class="text-brand-blue text-4xl sm:text-6xl lg:text-7xl font-sans font-extrabold text-center"
+            >
+                Lessons list
+            </h1>
+            <ol class="mx-4 sm:text-justify text-xl sm:text-2xl">
+                {
+                    chapters.map((chapter) => (
+                        <li>
+                            <a
+                                href={"/lessons/" + chapter.id}
+                                class="font-semibold underline underline-offset-4 decoration-1",
+                            >
+                                Chapter {chapter.data.id}: {chapter.data.name}
+                            </a>
+                            <ol class="list-decimal ml-10">
+                                {lessons.map((lesson) => (
+                                    <li>
+                                        <a
+                                            href={
+                                                "/lessons/" +
+                                                chapter.id +
+                                                "/" +
+                                                lesson.id
+                                            }
+                                            class="underline underline-offset-4 decoration-1",
+                                        >
+                                            {lesson.data.name}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ol>
+                        </li>
+                    ))
+                }
+            </ol>
+            <Logo
+                class="absolute -mt-24 xl:-mt-36 top-0 left-0 w-62 lg:w-92 xl:w-112 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-50% -rotate-z-10 shadow-xl z-10"
+            />
+            <Logo
+                class="absolute -mb-18 xl:-mb-32 -mr-12 bottom-0 right-0 w-52 lg:w-72 xl:w-92 h-auto max-md:hidden mask-x-from-25% mask-x-to-100% xl:mask-x-from-40% -rotate-z-170 shadow-xl z-10"
+            />
+        </div>
     </div>
 </Default>

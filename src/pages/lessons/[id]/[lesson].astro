@@ -32,5 +32,76 @@ const { Content } = await render(lesson);
     chapterId={lesson.data.chapterId}
     number={lesson.data.id}
 >
-    <Content />
+    <div id="lesson-content" class="w-full flex flex-col gap-2">
+        <Content />
+    </div>
 </Lesson>
+
+<style is:global>
+    #lesson-content h2 {
+        font-size: var(--text-3xl);
+        font-weight: var(--font-weight-bold);
+        color: color-mix(
+            in oklab,
+            var(--color-brand-blue) 90%,
+            var(--color-brand-black)
+        );
+    }
+
+    #lesson-content img {
+        margin: auto;
+    }
+
+    #lesson-content h3 {
+        font-size: var(--text-2xl);
+        font-weight: var(--font-weight-bold);
+        color: color-mix(
+            in oklab,
+            var(--color-brand-blue) 90%,
+            var(--color-brand-black)
+        );
+    }
+
+    #lesson-content h2::before {
+        content: "> ";
+    }
+
+    #lesson-content h3::before {
+        content: ">> ";
+    }
+
+    #lesson-content p {
+        font-size: var(--text-xl);
+        text-align: justify;
+    }
+
+    #lesson-content ol {
+        list-style-type: decimal;
+        list-style-position: outside;
+        font-size: var(--text-xl);
+        text-align: justify;
+        margin-left: 1em;
+    }
+
+    #lesson-content ul {
+        list-style-type: disc;
+        list-style-position: outside;
+        font-size: var(--text-xl);
+        text-align: justify;
+        margin-left: 1em;
+    }
+
+    @media (width >= 80rem) {
+        #lesson-content h2 {
+            font-size: var(--text-4xl);
+        }
+
+        #lesson-content h3 {
+            font-size: var(--text-3xl);
+        }
+
+        #lesson-content p {
+            font-size: var(--text-xl);
+        }
+    }
+</style>
