@@ -1,5 +1,5 @@
 ---
-import Logo from "../images/logo.svg";
+import Logo from "@images/logo.svg";
 
 const { pathname } = Astro.url;
 ---
@@ -24,10 +24,10 @@ const { pathname } = Astro.url;
                 class={pathname.startsWith("/lessons") ? "active" : ""}
                 >Lessons</a
             >
-            <a
+            <!-- <a
                 href="/about"
                 class={pathname.startsWith("/about") ? "active" : ""}>About</a
-            >
+            > -->
         </nav>
         <input
             type="checkbox"
@@ -51,11 +51,11 @@ const { pathname } = Astro.url;
                     class:list={[{ active: pathname.startsWith("/lessons") }]}
                     >Lessons</a
                 >
-                <a
+                <!-- <a
                     href="/about"
                     class:list={[{ active: pathname.startsWith("/about") }]}
                     >About</a
-                >
+                > -->
             </div>
         </nav>
     </div>
