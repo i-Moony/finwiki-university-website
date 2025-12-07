@@ -16,9 +16,9 @@ const { chapter } = Astro.props;
 const { Content } = await render(chapter);
 
 const lessons = await getCollection("lessons");
-const chapterLessons = lessons.filter(
-    (lesson) => lesson.data.chapterId === chapter.data.id,
-);
+const chapterLessons = lessons
+    .filter((lesson) => lesson.data.chapterId === chapter.data.id)
+    .sort((a, b) => a.data.id - b.data.id);
 ---
 
 <Chapter title={chapter.data.name} number={chapter.data.id}>

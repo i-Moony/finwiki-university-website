@@ -11,7 +11,7 @@ const highlightChapter = paths.length === 3;
 ---
 
 <nav
-    class="bg-white border border-brand-grey/80 flex flex-col w-full lg:w-112 rounded-2xl shadow-sm lg:shadow-md text-lg p-2 max-lg:py-4 sticky top-24 md:top-0 lg:top-6 lg:h-fit lg:pb-12"
+    class="bg-white border border-brand-grey/80 flex flex-col w-full lg:w-112 rounded-2xl shadow-sm lg:shadow-md text-lg p-2 max-lg:py-4 sticky top-24 sm:top-32 md:top-0 lg:top-3 lg:h-fit lg:pb-12"
     id="lesson-nav"
 >
     <label for="nav-hamburger-checkbox" id="nav-title">
@@ -34,47 +34,57 @@ const highlightChapter = paths.length === 3;
         <hr class="border-t border-brand-black/15 lg:border-dotted mx-4 my-4" />
         <ol class="mx-4 sm:text-justify">
             {
-                chapters.map((chapter) => (
-                    <li>
-                        <a
-                            href={"/lessons/" + chapter.id}
-                            class:list={[
-                                "font-semibold underline underline-offset-4 decoration-1",
-                                {
-                                    active:
-                                        highlightChapter &&
-                                        paths[2] === chapter.id,
-                                },
-                            ]}
-                        >
-                            Chapter {chapter.data.id}: {chapter.data.name}
-                        </a>
-                        <ol class="list-decimal ml-10">
-                            {lessons.map((lesson) => (
-                                <li>
-                                    <a
-                                        href={
-                                            "/lessons/" +
-                                            chapter.id +
-                                            "/" +
-                                            lesson.id
-                                        }
-                                        class:list={[
-                                            "underline underline-offset-4 decoration-1",
-                                            {
-                                                active:
-                                                    !highlightChapter &&
-                                                    paths[3] === lesson.id,
-                                            },
-                                        ]}
-                                    >
-                                        {lesson.data.name}
-                                    </a>
-                                </li>
-                            ))}
-                        </ol>
-                    </li>
-                ))
+                chapters
+                    .sort((a, b) => a.data.id - b.data.id)
+                    .map((chapter) => (
+                        <li>
+                            <a
+                                href={"/lessons/" + chapter.id}
+                                class:list={[
+                                    "font-semibold underline underline-offset-4 decoration-1",
+                                    {
+                                        active:
+                                            highlightChapter &&
+                                            paths[2] === chapter.id,
+                                    },
+                                ]}
+                            >
+                                Chapter {chapter.data.id}: {chapter.data.name}
+                            </a>
+                            <ol class="list-decimal ml-10">
+                                {lessons
+                                    .filter(
+                                        (lesson) =>
+                                            lesson.data.chapterId ===
+                                            chapter.data.id,
+                                    )
+                                    .sort((a, b) => a.data.id - b.data.id)
+                                    .map((lesson) => (
+                                        <li>
+                                            <a
+                                                href={
+                                                    "/lessons/" +
+                                                    chapter.id +
+                                                    "/" +
+                                                    lesson.id
+                                                }
+                                                class:list={[
+                                                    "underline underline-offset-4 decoration-1",
+                                                    {
+                                                        active:
+                                                            !highlightChapter &&
+                                                            paths[3] ===
+                                                                lesson.id,
+                                                    },
+                                                ]}
+                                            >
+                                                {lesson.data.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                            </ol>
+                        </li>
+                    ))
             }
         </ol>
     </div>

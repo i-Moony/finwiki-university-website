@@ -78,7 +78,7 @@ const lessons = await getCollection("lessons");
             </h1>
             <ol class="mx-4 sm:text-justify text-xl sm:text-2xl">
                 {
-                    chapters.map((chapter) => (
+                    chapters.sort((a, b) => a.data.id - b.data.id).map((chapter) => (
                         <li>
                             <a
                                 href={"/lessons/" + chapter.id}
@@ -87,7 +87,7 @@ const lessons = await getCollection("lessons");
                                 Chapter {chapter.data.id}: {chapter.data.name}
                             </a>
                             <ol class="list-decimal ml-10">
-                                {lessons.map((lesson) => (
+                                {lessons.filter((lesson) => lesson.data.chapterId === chapter.data.id).sort((a, b) => a.data.id - b.data.id).map((lesson) => (
                                     <li>
                                         <a
                                             href={
