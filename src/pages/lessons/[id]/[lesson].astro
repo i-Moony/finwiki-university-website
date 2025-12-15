@@ -52,6 +52,13 @@ const { Content } = await render(lesson);
         margin: auto;
     }
 
+    #lesson-content a {
+        text-decoration: solid 1px var(--color-brand-blue);
+        text-decoration-line: underline;
+        color: var(--color-brand-blue);
+        text-underline-offset: 4px;
+    }
+
     #lesson-content h3 {
         font-size: var(--text-2xl);
         font-weight: var(--font-weight-bold);
