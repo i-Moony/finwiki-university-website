@@ -2,6 +2,7 @@
 slug: introduction
 id: 1
 name: Introduction
+description: In this chapter we will introduce you to financial analysis of company's performance.
 ---
 
 ## About chapter

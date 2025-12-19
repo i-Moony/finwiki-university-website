@@ -4,10 +4,12 @@ import "@styles/global.css";
 import Head from "@components/head.astro";
 import Header from "@components/header.astro";
 import Footer from "@components/footer.astro";
+
+const { title = "EnFinWiki", description, tags } = Astro.props;
 ---
 
 <html lang="ru" dir="ltr">
-    <Head />
+    <Head {title} {description} {tags} />
     <body class="font-georgia bg-brand-black">
         <div class="flex flex-col items-center bg-brand-grey w-full">
             <Header />

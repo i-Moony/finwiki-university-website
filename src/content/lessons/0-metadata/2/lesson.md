@@ -4,7 +4,7 @@ id: 2
 chapterId: 0
 name: Glossary
 description: >
-    These are all the terms accross the course.
+    These are all the terms used accross the course.
 ---
 
 1. **Accounts Payable** – the amount owed by an organization to others for goods or services received. Buying from suppliers on credit will generate accounts payable.

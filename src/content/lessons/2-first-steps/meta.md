@@ -2,6 +2,7 @@
 slug: first-steps
 id: 2
 name: First steps
+description: This chapter will walk you through the basics of financial analysis.
 ---
 
 ## About chapter

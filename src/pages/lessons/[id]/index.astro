@@ -12,6 +12,8 @@ export async function getStaticPaths() {
 
 import Chapter from "../../../layouts/chapter.astro";
 
+import extractTags from "../../../utils/extract-tags";
+
 const { chapter } = Astro.props;
 const { Content } = await render(chapter);
 
@@ -21,7 +23,12 @@ const chapterLessons = lessons
     .sort((a, b) => a.data.id - b.data.id);
 ---
 
-<Chapter title={chapter.data.name} number={chapter.data.id}>
+<Chapter
+    title={chapter.data.name}
+    number={chapter.data.id}
+    description={chapter.data.description}
+    tags={extractTags(chapter.data.description)}
+>
     <div id="chapter-brief" class="w-full flex flex-col gap-2">
         <Content />
         <h2>Lessons</h2>

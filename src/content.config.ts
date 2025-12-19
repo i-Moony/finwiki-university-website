@@ -4,6 +4,7 @@ import { glob } from "astro/loaders";
 const ChapterSchema = z.object({
     id: z.number(),
     name: z.string(),
+    description: z.string(),
 });
 
 const LessonSchema = z.object({

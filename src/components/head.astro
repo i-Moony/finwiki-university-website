@@ -5,7 +5,7 @@ let keywords =
     "finance, financial, wiki, wikipedia, финансы, финансовая, вики, википедия, фин, study, project, учёба, учебный, проект";
 const link = Astro.url;
 const { title = "FinWiki", description, tags } = Astro.props;
-keywords = keywords + tags;
+keywords = keywords + ", " + tags;
 ---
 
 <head>
@@ -55,7 +55,10 @@ keywords = keywords + tags;
     <meta property="og:site_name" content={siteTitle} />
     <meta property="og:url" content={link} />
     <meta property="og:title" content={title} />
-    <meta property="og:image" content="/facebook.jpg" />
+    <meta
+        property="og:image"
+        content="/favicons/web-app-manifest-512x512.png"
+    />
     <meta property="og:image:width" content="512" />
     <meta property="og:image:height" content="512" />
     <meta property="og:image:description" content={description} />
@@ -65,7 +68,10 @@ keywords = keywords + tags;
     <meta property="twitter:card" content="summary" />
     <meta property="twitter:url" content={link} />
     <meta property="twitter:title" content={title} />
-    <meta property="twitter:image" content="/facebook.jpg" />
+    <meta
+        property="twitter:image"
+        content="/favicons/web-app-manifest-512x512.png"
+    />
 
     <!-- Metadata for Vivaldi -->
     <!-- Accent from Color -->

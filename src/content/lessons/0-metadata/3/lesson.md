@@ -7,6 +7,9 @@ description: >
     We conducted the survey to find out what students think about financial analysis.
 ---
 
+This is the survey we conducted to find out what students think about financial analysis.
+
+Each picture embeds the questions that was given to the students, possible answers and the pie chart depicting the answers.
 ![Are you employed?](./are-you-employed.png)
 
 ![What are you studying right now?](./what-are-you-studying.png)
