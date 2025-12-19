@@ -7,7 +7,7 @@ const lessons = await getCollection("lessons");
 const { pathname } = Astro.url;
 const paths = pathname.split("/");
 
-const highlightChapter = paths.length === 3;
+const { highlightChapter = false } = Astro.props;
 ---
 
 <nav
